@@ -1,0 +1,16 @@
+name: Ping Blog to Rebuild
+
+on:
+  push:
+    branches: ['main'] # Runs when you push a new write-up
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Blog Rebuild
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          repository: smavromatis/smavromatis.github.io
+          event-type: update-ctf
